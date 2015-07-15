@@ -13,26 +13,26 @@ import java.util.TreeSet;
 public class Architecture {
 	
 	private final String name;
-	private final int level;
+	private final int required;
 	
-	public Architecture(String name, int level) {
+	public Architecture(String name, int required) {
 		this.name = name;
-		this.level = level;
+		this.required = required;
 	}
 	
 	public String name() {
 		return this.name;
 	}
 	
-	public int level() {
-		return this.level;
+	public int required() {
+		return this.required;
 	}
 	
 	@Override
 	public boolean equals(Object obj) {
 		return obj instanceof Architecture
 				&& ((Architecture) obj).name.equals(this.name)
-				&& ((Architecture) obj).level == this.level;
+				&& ((Architecture) obj).required == this.required;
 	}
 	
 	@Override
@@ -43,8 +43,8 @@ public class Architecture {
 	
 	/** STATIC **/
 	public static final TreeSet<Architecture> architectures = new TreeSet<Architecture>();
-	public static void add(String architecture, int level) {
-		Architecture.architectures.add(new Architecture(architecture, level));
+	public static void add(String architecture, int required) {
+		Architecture.architectures.add(new Architecture(architecture, required));
 	}
 	public static Architecture get(String architecture) {
 		return Architecture.architectures.stream()

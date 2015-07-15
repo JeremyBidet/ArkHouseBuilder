@@ -97,8 +97,8 @@ public class CSVUtils {
 					.map(h -> h.name())
 					.reduce((s1, s2) -> s1 + ";" + s2)
 					.get());
-			sb.append(csv.getRows().stream()
-					.map(r -> r.get().stream()
+			sb.append(csv.rows().stream()
+					.map(r -> r.data().stream()
 							.map(d -> d.toString())
 							.reduce((s1, s2) -> s1 + ";" + s2)
 							.get())

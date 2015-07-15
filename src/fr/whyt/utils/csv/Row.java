@@ -44,7 +44,7 @@ public class Row {
 				.get();
 	}
 	
-	public ArrayList<Data<?>> get() {
+	public ArrayList<Data<?>> data() {
 		return (ArrayList<Data<?>>) this.row.entrySet().stream()
 				.sorted((e1, e2) -> e1.getKey().column() < e2.getKey().column() ? -1 : 1)
 				.map(e -> e.getValue())
@@ -82,7 +82,7 @@ public class Row {
 		sb.append( this.row_number < 100 ? ' ' : "" );
 		sb.append( this.row_number <  10 ? ' ' : "" );
 		sb.append( this.row_number );
-		sb.append( this.get().stream().map(d -> d.toString()).reduce((s1, s2) -> s1 + s2).get() );
+		sb.append( this.data().stream().map(d -> d.toString()).reduce((s1, s2) -> s1 + s2).get() );
 		
 		return sb.toString();
 	}

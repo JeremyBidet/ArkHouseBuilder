@@ -12,7 +12,7 @@ public class Compound {
 	
 	private final Architecture architecture;
 	private final Component component;
-	private final int quantity;
+	private int quantity;
 	
 	public Compound(Architecture architecture, Component component, int quantity) {
 		this.architecture = architecture;
@@ -41,6 +41,14 @@ public class Compound {
 	
 	public int getQuantity() {
 		return this.quantity;
+	}
+	
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public void addQuantity(int quantity) {
+		this.quantity += quantity;
 	}
 	
 	

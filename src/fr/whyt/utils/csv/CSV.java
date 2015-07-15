@@ -34,10 +34,10 @@ public class CSV {
 	}
 	
 	public int size() {
-		return this.header.columns() * this.rows.size();
+		return length() * count();
 	}
 	
-	public int columns() {
+	public int length() {
 		return this.header.columns();
 	}
 	
@@ -53,11 +53,11 @@ public class CSV {
 		return this.header.get(name);
 	}
 	
-	public int rows() {
+	public int count() {
 		return this.rows.size();
 	}
 	
-	public ArrayList<Row> getRows() {
+	public ArrayList<Row> rows() {
 		return this.rows;
 	}
 	
