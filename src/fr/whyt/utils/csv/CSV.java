@@ -14,6 +14,8 @@ import java.util.stream.Collectors;
  */
 public class CSV {
 
+	protected static final int margin = 1;
+	
 	private final Path path;
 	private final Header header;
 	private final ArrayList<Row> rows;
@@ -22,6 +24,9 @@ public class CSV {
 		this.path = path;
 		this.header = header;
 		this.rows = rows;
+		
+		Row.row_index_inc = 0;
+		HeaderInfo.column_index_inc = 0;
 	}
 	
 	public Path getPath() {
@@ -56,11 +61,11 @@ public class CSV {
 		return this.rows;
 	}
 	
-	public ArrayList<Row> getRows(Data filter) {
+	public ArrayList<Row> getRows(Data<?> filter) {
 		return (ArrayList<Row>) this.rows.stream().filter(r -> r.contains(filter)).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Row> getRows(Data filter, String header) {
+	public ArrayList<Row> getRows(Data<?> filter, String header) {
 		return (ArrayList<Row>) this.rows.stream().filter(r -> r.contains(filter, header)).collect(Collectors.toList());
 	}
 	
@@ -68,16 +73,16 @@ public class CSV {
 		return rows.get(row);
 	}
 	
-	public ArrayList<Data> getColumn(int column) {
-		return (ArrayList<Data>) this.rows.stream()
+	public ArrayList<Data<?>> getColumn(int column) {
+		return (ArrayList<Data<?>>) this.rows.stream()
 				.map(r -> r.get(column))
-				.collect(Collectors.toList());
+				.collect(Collectors.<Data<?>>toList());
 	}
 	
-	public ArrayList<Data> getColumn(String column) {
-		return (ArrayList<Data>) this.rows.stream()
+	public ArrayList<Data<?>> getColumn(String column) {
+		return (ArrayList<Data<?>>) this.rows.stream()
 				.map(r -> r.get(column))
-				.collect(Collectors.toList());
+				.collect(Collectors.<Data<?>>toList());
 	}
 	
 	

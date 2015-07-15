@@ -3,6 +3,11 @@
  */
 package fr.whyt.main;
 
+import java.nio.file.Paths;
+
+import fr.whyt.utils.CSVUtils;
+import fr.whyt.utils.csv.CSV;
+
 
 
 /**
@@ -53,6 +58,8 @@ public class Main {
 //		
 //		System.out.println(Integer.MAX_VALUE);
 		
+		CSV csv = CSVUtils.deserialize(Paths.get("resources/data.csv"));
+		System.out.println(csv);
 		
 	}
 

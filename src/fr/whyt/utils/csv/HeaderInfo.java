@@ -12,18 +12,18 @@ import fr.whyt.utils.StringUtils;
  */
 public class HeaderInfo {
 	
-	private static int column_index_inc = 0;
+	protected static int column_index_inc = 0;
 	
 	private Class<?> type;
 	private final int column_index;
-	private final int size;
 	private final String name;
+	private int size;
 	
-	public HeaderInfo(String name, int size) {
+	public HeaderInfo(String name) {
 		this.type = null;
 		this.column_index = HeaderInfo.column_index_inc++;
-		this.size = size;
 		this.name = name;
+		this.size = this.name.length();
 	}
 	
 	public int column() {
@@ -44,6 +44,12 @@ public class HeaderInfo {
 	
 	public void type(Class<?> type) {
 		this.type = type;
+		switch(type.getSimpleName()) {
+			case "int": 	this.size = Integer.max(this.name.length() + CSV.margin, String.valueOf(Integer.MAX_VALUE).length()); break;
+			case "double":	this.size = Integer.max(this.name.length() + CSV.margin, String.valueOf(Double.MAX_VALUE).length()); break;
+			case "String":	this.size = Integer.max(this.name.length() + CSV.margin, 32); break;
+			default: 		this.size = 4; break;
+		}
 	}
 	
 	
@@ -62,7 +68,7 @@ public class HeaderInfo {
 	
 	@Override
 	public String toString() {
-		return StringUtils.padCenter(this.name, this.size);
+		return StringUtils.padRight(this.name, this.size, CSV.margin);
 	}
 	
 }

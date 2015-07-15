@@ -11,13 +11,10 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import fr.whyt.core.Architecture;
-import fr.whyt.core.Component;
 import fr.whyt.utils.csv.CSV;
 import fr.whyt.utils.csv.Data;
 import fr.whyt.utils.csv.Header;
@@ -31,16 +28,11 @@ import fr.whyt.utils.csv.Row;
  */
 public class CSVUtils {
 	
-	private static final String integer_regex = "[-+]?\\d{," + String.valueOf(Integer.MAX_VALUE).length() + "}";
+	private static final String integer_regex = "[-+]?\\d{1," + String.valueOf(Integer.MAX_VALUE).length() + "}";
 	private static final Pattern integer_pattern = Pattern.compile(integer_regex);
 	
-	private static final String architecture_regex = "\\w+";
-	private static final Predicate<String> architecture_predicate = a -> Architecture.has(a);
-	private static final Pattern architecture_pattern = Pattern.compile(architecture_regex);
-	
-	private static final String component_regex = "\\w+";
-	private static final Predicate<String> component_predicate = c -> Component.has(c);
-	private static final Pattern component_pattern = Pattern.compile(component_regex);
+	private static final String double_regex = "[-+]?\\d*[\\.,]?\\d*";
+	private static final Pattern double_pattern = Pattern.compile(double_regex);
 	
 	public static Class<?> matchType(String field) {
 		Matcher m;
@@ -50,23 +42,18 @@ public class CSVUtils {
 			return Integer.TYPE;
 		}
 		
-		m = architecture_pattern.matcher(field);
-		if( m.matches() && architecture_predicate.test(field) ) {
-			return Architecture.class;
-		}
-		
-		m = component_pattern.matcher(field);
-		if( m.matches() && component_predicate.test(field) ) {
-			return Component.class;
+		m = double_pattern.matcher(field);
+		if( m.matches() ) {
+			return Double.TYPE;
 		}
 		
 		else {
-			return null;
+			return String.class;
 		}
 	}
 	
 	public static CSV deserialize(Path path) {		
-		try {
+		try {			
 			BufferedReader br = Files.newBufferedReader(path);
 			String line;
 			
@@ -74,7 +61,7 @@ public class CSVUtils {
 			line = br.readLine();
 			Header header = new Header(
 					(HashMap<String, HeaderInfo>) Arrays.asList(line.split(";")).stream()
-							.collect(Collectors.toMap(s -> s, s -> new HeaderInfo(s, s.length()*2))));
+							.collect(Collectors.toMap(s -> s, s -> new HeaderInfo(s))));
 			
 			// parse rows
 			ArrayList<Row> rows = new ArrayList<>();
@@ -82,22 +69,22 @@ public class CSVUtils {
 			while((line = br.readLine()) != null) {
 				int header_index = 0;
 				String[] fields = line.split(";");
-				HashMap<HeaderInfo, Data> row = new HashMap<>(fields.length);
+				HashMap<HeaderInfo, Data<?>> row = new HashMap<>(fields.length);
 				for(String field : fields) {
 					Class<?> type = matchType(field);
 					HeaderInfo hi = header.get(header_index++);
 					if(row_index == 0) {
 						hi.type(type);
 					}
-					row.put(hi, new Data(type, hi, Data.cast(type, field), row_index++));
+					row.put(hi, Data.cast(type, hi, field, row_index));
 				}
 				rows.add(new Row(row));
+				row_index++;
 			}
-			
 			return new CSV(path, header, rows);
 			
 		} catch ( IOException e ) {
-			System.err.println("Unable to open this file : " + path);
+			System.err.println("Unable to open this file : " + path.toAbsolutePath());
 			return null;
 		}
 	}

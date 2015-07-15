@@ -14,12 +14,12 @@ import java.util.stream.Collectors;
  */
 public class Row {
 
-	private static int row_index_inc = 0;
+	protected static int row_index_inc = 0;
 	
 	private final int row_number;
-	private final HashMap<HeaderInfo, Data> row;
+	private final HashMap<HeaderInfo, Data<?>> row;
 	
-	public Row(HashMap<HeaderInfo, Data> row) {
+	public Row(HashMap<HeaderInfo, Data<?>> row) {
 		this.row = row;
 		this.row_number = Row.row_index_inc++;
 	}
@@ -32,11 +32,11 @@ public class Row {
 		return this.row_number;
 	}
 	
-	public Data get(String column) {
+	public Data<?> get(String column) {
 		return row.get(column);
 	}
 	
-	public Data get(int column) {
+	public Data<?> get(int column) {
 		return this.row.entrySet().stream()
 				.filter(e -> e.getKey().column() == column)
 				.map(e -> e.getValue())
@@ -44,14 +44,14 @@ public class Row {
 				.get();
 	}
 	
-	public ArrayList<Data> get() {
-		return (ArrayList<Data>) this.row.entrySet().stream()
+	public ArrayList<Data<?>> get() {
+		return (ArrayList<Data<?>>) this.row.entrySet().stream()
 				.sorted((e1, e2) -> e1.getKey().column() < e2.getKey().column() ? -1 : 1)
 				.map(e -> e.getValue())
-				.collect(Collectors.toList());
+				.collect(Collectors.<Data<?>>toList());
 	}
 	
-	public boolean contains(Data filter) {
+	public boolean contains(Data<?> filter) {
 		if( this.row.values().stream().filter(v -> v.equals(filter)).count() > 0) {
 			return true;
 		} else {
@@ -59,7 +59,7 @@ public class Row {
 		}
 	}
 	
-	public boolean contains(Data filter, String header) {
+	public boolean contains(Data<?> filter, String header) {
 		if( this.row.get(header).equals(filter) ) {
 			return true;
 		} else {
@@ -82,7 +82,7 @@ public class Row {
 		sb.append( this.row_number < 100 ? ' ' : "" );
 		sb.append( this.row_number <  10 ? ' ' : "" );
 		sb.append( this.row_number );
-		sb.append( this.row.values().stream().map(d -> d.toString()).reduce((s1, s2) -> s1 + s2).get() );
+		sb.append( this.get().stream().map(d -> d.toString()).reduce((s1, s2) -> s1 + s2).get() );
 		
 		return sb.toString();
 	}

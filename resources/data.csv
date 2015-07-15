@@ -1,56 +1,56 @@
 Architecture;Required;Component;Level;Thatch;Wood;Fiber;Stone;Metal Ingot;Cementing Paste;Polymer
-Thatch;1;Foundation;1;20;6;15;;;;
-Thatch;1;Wall;2;10;2;7;;;;
-Thatch;1;Roof;3;15;4;10;;;;
-Thatch;1;Doorframe;4;8;6;6;;;;
-Thatch;1;Door;5;7;;4;;;;
-Wood;15;Foundation;6;20;80;15;;;;
-Wood;15;Fence;7;;;;;;;
-Wood;15;Wall;8;10;40;7;;;;
-Wood;15;Ceiling;9;15;60;10;;;;
-Wood;15;Doorframe;10;8;30;6;;;;
-Wood;15;Door;11;7;20;4;;;;
-Wood;15;Window;12;2;8;1;;;;
-Wood;15;Windowframe;13;9;36;6;;;;
-Wood;15;Hatchframe;14;12;50;8;;;;
-Wood;15;Trapdoor;15;7;20;4;;;;
-Wood;15;Ladder;16;7;4;4;;;;
-Wood;15;Pillar;17;10;40;7;;;;
-Wood;15;Ramp;18;15;60;10;;;;
-Wood;15;Catwalk;19;7;20;4;;;;
-Wood;15;Dinausor Gateway;20;35;140;25;40;;;
-Wood;15;Dinausor Gate;21;15;60;10;;;;
-Stone;25;Foundation;22;;;;;;;
-Stone;25;Fence;23;10;10;;15;;;
-Stone;25;Wall;24;15;20;;40;;;
-Stone;25;Ceiling;25;;;;;;;
-Stone;25;Doorframe;26;;;;;;;
-Stone;25;Wood Renforced Door;27;;;;;;;
-Stone;25;Wood Renforced Window;28;;;;;;;
-Stone;25;Windowframe;29;;;;;;;
-Stone;25;Hatchframe;30;;;;;;;
-Stone;25;Trapdoor;31;;;;;;;
-Stone;25;Ladder;32;;;;;;;
-Stone;25;Pillar;33;;;;;;;
-Stone;25;Ramp;34;;;;;;;
-Stone;25;Catwalk;35;;;;;;;
-Stone;25;Dinausor Gateway;36;;;;;;;
-Stone;25;Wood Renforced Dinausor Gate;37;;;;;;;
-Metal;35;Foundation;38;;;;;50;15;
-Metal;35;Fence;39;;;;;;;
-Metal;35;Wall;40;;;;;25;7;
-Metal;35;Ceiling;41;;;;;35;10;
-Metal;35;Doorframe;42;;;;;20;6;
-Metal;35;Door;43;;;;;10;4;
-Metal;35;Window;44;;;;;7;;
-Metal;35;Windowframe;45;;;;;20;6;
-Metal;35;Hatchframe;46;;;;;30;8;
-Metal;35;Trapdoor;47;;;;;10;4;
-Metal;35;Ladder;48;;;;;7;;
-Metal;35;Pillar;49;;;;;25;7;
-Metal;35;Ramp;50;;;;;35;10;
-Metal;35;Catwalk;51;;;;;15;;
-Metal;35;Dinausor Gateway;52;;;;;85;25;
-Metal;35;Dinausor Gate;53;;;;;35;10;
-Metal;35;Behemoth Gateway;54;;;;;135;35;20
-Metal;35;Behemoth Gate;55;;;;;60;15;
+Thatch;1;Foundation;1;20;6;15;0;0;0;0
+Thatch;1;Wall;2;10;2;7;0;0;0;0
+Thatch;1;Roof;3;15;4;10;0;0;0;0
+Thatch;1;Doorframe;4;8;6;6;0;0;0;0
+Thatch;1;Door;5;7;0;4;0;0;0;0
+Wood;15;Foundation;6;20;80;15;0;0;0;0
+Wood;15;Fence;7;0;0;0;0;0;0;0
+Wood;15;Wall;8;10;40;7;0;0;0;0
+Wood;15;Ceiling;9;15;60;10;0;0;0;0
+Wood;15;Doorframe;10;8;30;6;0;0;0;0
+Wood;15;Door;11;7;20;4;0;0;0;0
+Wood;15;Window;12;2;8;1;0;0;0;0
+Wood;15;Windowframe;13;9;36;6;0;0;0;0
+Wood;15;Hatchframe;14;12;50;8;0;0;0;0
+Wood;15;Trapdoor;15;7;20;4;0;0;0;0
+Wood;15;Ladder;16;7;4;4;0;0;0;0
+Wood;15;Pillar;17;10;40;7;0;0;0;0
+Wood;15;Ramp;18;15;60;10;0;0;0;0
+Wood;15;Catwalk;19;7;20;4;0;0;0;0
+Wood;15;Dinausor Gateway;20;35;140;25;40;0;0;0
+Wood;15;Dinausor Gate;21;15;60;10;0;0;0;0
+Stone;25;Foundation;22;0;0;0;0;0;0;0
+Stone;25;Fence;23;10;10;0;15;0;0;0
+Stone;25;Wall;24;15;20;0;40;0;0;0
+Stone;25;Ceiling;25;0;0;0;0;0;0;0
+Stone;25;Doorframe;26;0;0;0;0;0;0;0
+Stone;25;Wood Renforced Door;27;0;0;0;0;0;0;0
+Stone;25;Wood Renforced Window;28;0;0;0;0;0;0;0
+Stone;25;Windowframe;29;0;0;0;0;0;0;0
+Stone;25;Hatchframe;30;0;0;0;0;0;0;0
+Stone;25;Trapdoor;31;0;0;0;0;0;0;0
+Stone;25;Ladder;32;0;0;0;0;0;0;0
+Stone;25;Pillar;33;0;0;0;0;0;0;0
+Stone;25;Ramp;34;0;0;0;0;0;0;0
+Stone;25;Catwalk;35;0;0;0;0;0;0;0
+Stone;25;Dinausor Gateway;36;0;0;0;0;0;0;0
+Stone;25;Wood Renforced Dinausor Gate;37;0;0;0;0;0;0;0
+Metal;35;Foundation;38;0;0;0;0;50;15;0
+Metal;35;Fence;39;0;0;0;0;0;0;0
+Metal;35;Wall;40;0;0;0;0;25;7;0
+Metal;35;Ceiling;41;0;0;0;0;35;10;0
+Metal;35;Doorframe;42;0;0;0;0;20;6;0
+Metal;35;Door;43;0;0;0;0;10;4;0
+Metal;35;Window;44;0;0;0;0;7;0;0
+Metal;35;Windowframe;45;0;0;0;0;20;6;0
+Metal;35;Hatchframe;46;0;0;0;0;30;8;0
+Metal;35;Trapdoor;47;0;0;0;0;10;4;0
+Metal;35;Ladder;48;0;0;0;0;7;0;0
+Metal;35;Pillar;49;0;0;0;0;25;7;0
+Metal;35;Ramp;50;0;0;0;0;35;10;0
+Metal;35;Catwalk;51;0;0;0;0;15;0;0
+Metal;35;Dinausor Gateway;52;0;0;0;0;85;25;0
+Metal;35;Dinausor Gate;53;0;0;0;0;35;10;0
+Metal;35;Behemoth Gateway;54;0;0;0;0;135;35;20
+Metal;35;Behemoth Gate;55;0;0;0;0;60;15;0
