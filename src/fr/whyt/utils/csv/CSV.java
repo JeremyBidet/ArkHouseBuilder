@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.whyt.core.data;
+package fr.whyt.utils.csv;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import java.util.stream.Collectors;
 public class CSV {
 
 	private final Path path;
-	private final ArrayList<Header> header;
+	private final Header header;
 	private final ArrayList<Row> rows;
 	
-	public CSV(Path path, ArrayList<Header> header, ArrayList<Row> rows) {
+	public CSV(Path path, Header header, ArrayList<Row> rows) {
 		this.path = path;
 		this.header = header;
 		this.rows = rows;
@@ -29,23 +29,23 @@ public class CSV {
 	}
 	
 	public int size() {
-		return this.header.size() * this.rows.size();
+		return this.header.columns() * this.rows.size();
 	}
 	
 	public int columns() {
-		return this.header.size();
+		return this.header.columns();
 	}
 	
-	public ArrayList<Header> getHeader() {
+	public Header getHeader() {
 		return this.header;
 	}
 	
-	public Header getHeader(int column) {
+	public HeaderInfo getHeader(int column) {
 		return this.header.get(column);
 	}
 	
-	public Header getHeader(String name) {
-		return this.header.stream().filter(h -> h.name.equals(name)).findFirst().get();
+	public HeaderInfo getHeader(String name) {
+		return this.header.get(name);
 	}
 	
 	public int rows() {
@@ -56,11 +56,11 @@ public class CSV {
 		return this.rows;
 	}
 	
-	public ArrayList<Row> getRows(CSVData filter) {
+	public ArrayList<Row> getRows(Data filter) {
 		return (ArrayList<Row>) this.rows.stream().filter(r -> r.contains(filter)).collect(Collectors.toList());
 	}
 	
-	public ArrayList<Row> getRows(CSVData filter, Header header) {
+	public ArrayList<Row> getRows(Data filter, String header) {
 		return (ArrayList<Row>) this.rows.stream().filter(r -> r.contains(filter, header)).collect(Collectors.toList());
 	}
 	
@@ -68,26 +68,15 @@ public class CSV {
 		return rows.get(row);
 	}
 	
-	public ArrayList<CSVData> getColumn(Header column) {
-		return (ArrayList<CSVData>) this.rows.stream()
+	public ArrayList<Data> getColumn(int column) {
+		return (ArrayList<Data>) this.rows.stream()
 				.map(r -> r.get(column))
 				.collect(Collectors.toList());
 	}
 	
-	public ArrayList<CSVData> getColumn(int column) {
-		return (ArrayList<CSVData>) this.rows.stream()
-				.map(r -> r.get(this.header.get(column)))
-				.collect(Collectors.toList());
-	}
-	
-	public ArrayList<CSVData> getColumn(String column) {
-		Header header = this.header.stream()
-				.filter(h -> h.name.equals(column))
-				.findFirst()
-				.get();
-		
-		return (ArrayList<CSVData>) this.rows.stream()
-				.map(r -> r.get(header))
+	public ArrayList<Data> getColumn(String column) {
+		return (ArrayList<Data>) this.rows.stream()
+				.map(r -> r.get(column))
 				.collect(Collectors.toList());
 	}
 	
@@ -98,6 +87,20 @@ public class CSV {
 				&& ((CSV) obj).path.equals(this.path)
 				&& ((CSV) obj).header.equals(this.header)
 				&& ((CSV) obj).rows.equals(this.rows);
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append("---").append(this.path.toAbsolutePath()).append('\n');
+		sb.append(this.header).append('\n');
+		
+		for(Row row : this.rows) {
+			sb.append(row.toString()).append('\n');
+		}
+		
+		return sb.toString();
 	}
 	
 }

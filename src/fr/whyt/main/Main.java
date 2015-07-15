@@ -3,12 +3,6 @@
  */
 package fr.whyt.main;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.stream.Collectors;
-
-import fr.whyt.core.data.CSVData;
-import fr.whyt.core.data.Header;
 
 
 /**
@@ -37,27 +31,28 @@ public class Main {
 //		System.out.println(c);
 		
 
-		HashMap<Header, CSVData> row = new HashMap<>();
-		Header h = new Header("Column0");
-		Header h2 = new Header("Zeta");
-		Header h3 = new Header("Alpha");
-		Header h4 = new Header("Beta");
+//		HashMap<Header, CSVData> row = new HashMap<>();
+//		Header h = new Header("Column0");
+//		Header h2 = new Header("Zeta");
+//		Header h3 = new Header("Alpha");
+//		Header h4 = new Header("Beta");
+//		
+//		row.put(h, new CSVData("java.lang.Integer", h, 1, 0));
+//		row.put(h2, new CSVData("java.lang.String", h2, "hello", 1));
+//		row.put(h3, new CSVData("java.lang.Boolean", h3, true, 2));
+//		row.put(h4, new CSVData("java.lang.Integer", h4, 6, 3));
+//		
+//		System.out.println(row);
+//		
+//		ArrayList<CSVData> data = (ArrayList<CSVData>) row.entrySet().stream()
+//			.sorted( (e1, e2) -> e1.getKey().column < e2.getKey().column ? -1 : 1 )
+//			.map( e -> e.getValue() )
+//			.collect(Collectors.toList());
+//		
+//		System.out.println(data);
+//		
+//		System.out.println(Integer.MAX_VALUE);
 		
-		row.put(h, new CSVData("java.lang.Integer", h, 1, 0));
-		row.put(h2, new CSVData("java.lang.String", h2, "hello", 1));
-		row.put(h3, new CSVData("java.lang.Boolean", h3, true, 2));
-		row.put(h4, new CSVData("java.lang.Integer", h4, 6, 3));
-		
-		System.out.println(row);
-		
-		ArrayList<CSVData> data = (ArrayList<CSVData>) row.entrySet().stream()
-			.sorted( (e1, e2) -> e1.getKey().column < e2.getKey().column ? -1 : 1 )
-			.map( e -> e.getValue() )
-			.collect(Collectors.toList());
-		
-		System.out.println(data);
-		
-		System.out.println(Integer.MAX_VALUE);
 		
 	}
 

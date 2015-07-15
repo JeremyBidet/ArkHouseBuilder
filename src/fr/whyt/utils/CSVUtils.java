@@ -1,14 +1,13 @@
 /**
  * 
  */
-package fr.whyt.core.data;
+package fr.whyt.utils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,15 +18,18 @@ import java.util.stream.Collectors;
 
 import fr.whyt.core.Architecture;
 import fr.whyt.core.Component;
+import fr.whyt.utils.csv.CSV;
+import fr.whyt.utils.csv.Data;
+import fr.whyt.utils.csv.Header;
+import fr.whyt.utils.csv.HeaderInfo;
+import fr.whyt.utils.csv.Row;
 
 
 /**
  * @author Jeremy
  *
  */
-public class DataRW {
-	
-	public static final Path path = Paths.get("resources/data.csv");
+public class CSVUtils {
 	
 	private static final String integer_regex = "[-+]?\\d{," + String.valueOf(Integer.MAX_VALUE).length() + "}";
 	private static final Pattern integer_pattern = Pattern.compile(integer_regex);
@@ -63,42 +65,49 @@ public class DataRW {
 		}
 	}
 	
-	public static CSV deserialize() {		
+	public static CSV deserialize(Path path) {		
 		try {
 			BufferedReader br = Files.newBufferedReader(path);
 			String line;
 			
+			// parse header
 			line = br.readLine();
-			ArrayList<Header> header = (ArrayList<Header>) Arrays.asList(line.split(";")).stream()
-					.map(s -> new Header(s))
-					.collect(Collectors.toList());
+			Header header = new Header(
+					(HashMap<String, HeaderInfo>) Arrays.asList(line.split(";")).stream()
+							.collect(Collectors.toMap(s -> s, s -> new HeaderInfo(s, s.length()*2))));
 			
+			// parse rows
 			ArrayList<Row> rows = new ArrayList<>();
 			int row_index = 0;
-			while( (line = br.readLine()) != null ) {
+			while((line = br.readLine()) != null) {
 				int header_index = 0;
 				String[] fields = line.split(";");
-				HashMap<Header, CSVData> row = new HashMap<>(fields.length);
+				HashMap<HeaderInfo, Data> row = new HashMap<>(fields.length);
 				for(String field : fields) {
-					Header h = header.get(header_index);
 					Class<?> type = matchType(field);
-					row.put(h, new CSVData(type, h, CSVData.cast(type, field), row_index));
+					HeaderInfo hi = header.get(header_index++);
+					if(row_index == 0) {
+						hi.type(type);
+					}
+					row.put(hi, new Data(type, hi, Data.cast(type, field), row_index++));
 				}
 				rows.add(new Row(row));
 			}
 			
 			return new CSV(path, header, rows);
+			
 		} catch ( IOException e ) {
 			System.err.println("Unable to open this file : " + path);
 			return null;
 		}
 	}
 	
-	public static void serialize(CSV csv) {
+	public static void serialize(CSV csv, Path path) {
 		try {
 			StringBuilder sb = new StringBuilder();
-			sb.append(csv.getHeader().stream()
-					.map(h -> h.name)
+			
+			sb.append(csv.getHeader().get().values().stream()
+					.map(h -> h.name())
 					.reduce((s1, s2) -> s1 + ";" + s2)
 					.get());
 			sb.append(csv.getRows().stream()
@@ -109,6 +118,7 @@ public class DataRW {
 					.reduce((s1, s2) -> s1 + "\n" + s2)
 					.get());
 			
+			path.toAbsolutePath().toFile().delete();
 			BufferedWriter bw = Files.newBufferedWriter(path);
 			bw.write(sb.toString());
 			bw.close();
