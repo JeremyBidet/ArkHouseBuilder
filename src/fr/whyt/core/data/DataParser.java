@@ -12,7 +12,7 @@ import fr.whyt.core.Architecture;
 import fr.whyt.core.Component;
 import fr.whyt.core.Compound;
 import fr.whyt.core.Resource;
-import fr.whyt.utils.CSVUtils;
+import fr.whyt.utils.CSVParser;
 import fr.whyt.utils.csv.CSV;
 import fr.whyt.utils.csv.Row;
 
@@ -21,20 +21,20 @@ import fr.whyt.utils.csv.Row;
  * @author Jeremy
  *
  */
-public class DataUtils {
+public class DataParser {
 	
 	public static final Path path = Paths.get("resources/data.csv");
 	
 	public static ArrayList<Compound> deserialize() {
-		CSV csv = CSVUtils.deserialize(path);
+		CSV csv = CSVParser.deserialize(path);
 		
 		ArrayList<Compound> compounds = new ArrayList<Compound>(csv.count());
 		
 		for(Row row : csv.rows()) {
-			String 	architecture	= (String) row.get("Architecture").value;
-			int 	required		= (int) row.get("Required").value;
-			String 	component		= (String) row.get("Component").value;
-			int		level			= (int) row.get("Level").value;
+			String 	architecture	= (String) 	row.get(csv.getHeader("Architecture")).value;
+			int 	required		= (int) 	row.get(csv.getHeader("Required")).value;
+			String 	component		= (String) 	row.get(csv.getHeader("Component")).value;
+			int		level			= (int) 	row.get(csv.getHeader("Level")).value;
 			
 			HashMap<Resource, Integer> resources = new HashMap<Resource, Integer>();
 			int resources_index_start = 4, resources_index_end = 10;
@@ -60,7 +60,7 @@ public class DataUtils {
 		// TODO
 		
 		CSV csv = new CSV(path, null, null);
-		CSVUtils.serialize(csv, path);
+		CSVParser.serialize(csv, path);
 	}
 	
 }

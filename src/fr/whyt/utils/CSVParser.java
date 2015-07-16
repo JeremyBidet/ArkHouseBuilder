@@ -26,7 +26,7 @@ import fr.whyt.utils.csv.Row;
  * @author Jeremy
  *
  */
-public class CSVUtils {
+public class CSVParser {
 	
 	private static final String integer_regex = "[-+]?\\d{1," + String.valueOf(Integer.MAX_VALUE).length() + "}";
 	private static final Pattern integer_pattern = Pattern.compile(integer_regex);

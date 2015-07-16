@@ -62,7 +62,7 @@ public class Compound {
 	
 	@Override
 	public String toString() {
-		return this.architecture + " " + this.component;
+		return this.quantity + "x " + this.architecture + " " + this.component;
 	}
 	
 }

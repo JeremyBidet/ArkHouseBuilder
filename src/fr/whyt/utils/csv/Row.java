@@ -32,8 +32,16 @@ public class Row {
 		return this.row_number;
 	}
 	
+	public Data<?> get(HeaderInfo column) {
+		return this.row.get(column);
+	}
+	
 	public Data<?> get(String column) {
-		return row.get(column);
+		return this.row.entrySet().stream()
+				.filter(e -> e.getKey().name().equals(column))
+				.map(e -> e.getValue())
+				.findFirst()
+				.get();
 	}
 	
 	public Data<?> get(int column) {

@@ -10,7 +10,7 @@ import java.util.TreeSet;
  * @author Jeremy
  *
  */
-public class Architecture {
+public class Architecture implements Comparable<Architecture> {
 	
 	private final String name;
 	private final int required;
@@ -40,6 +40,12 @@ public class Architecture {
 		return this.name;
 	}
 	
+	@Override
+	public int compareTo(Architecture o) {
+		return this.name.hashCode() - o.name.hashCode() < 0 ? 1 : -1;
+	}
+	
+	
 	
 	/** STATIC **/
 	public static final TreeSet<Architecture> architectures = new TreeSet<Architecture>();
@@ -55,5 +61,5 @@ public class Architecture {
 	public static boolean has(String architecture) {
 		return Architecture.architectures.contains(architecture);
 	}
-	
+
 }

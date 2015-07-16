@@ -4,6 +4,7 @@
 package fr.whyt.core;
 
 import java.util.HashMap;
+import java.util.NoSuchElementException;
 import java.util.TreeSet;
 
 
@@ -11,7 +12,7 @@ import java.util.TreeSet;
  * @author Jeremy
  *
  */
-public class Component {
+public class Component implements Comparable<Component> {
 	
 	private final String name;
 	private final int level;
@@ -50,13 +51,26 @@ public class Component {
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append(this.name).append(" (").append(
-				this.resources.keySet().stream()
-					.map((k) -> k+":"+this.resources.get(k))
+		sb.append(this.name);
+		sb.append(" (");
+		try {
+			sb.append(
+				this.resources.entrySet().stream()
+					.map(e -> e.getKey()+":"+e.getValue())
 					.reduce((r1, r2) -> r1 + " " + r2)
-					.get()).append(")");
+					.get()
+			);
+		} catch (NoSuchElementException e) {
+			sb.append("");
+		}
+		sb.append(")");
 		
 		return sb.toString();
+	}
+	
+	@Override
+	public int compareTo(Component o) {
+		return this.name.hashCode() - o.name.hashCode() < 0 ? 1 : -1;
 	}
 	
 	

@@ -3,10 +3,11 @@
  */
 package fr.whyt.main;
 
-import java.nio.file.Paths;
+import java.util.ArrayList;
 
-import fr.whyt.utils.CSVUtils;
-import fr.whyt.utils.csv.CSV;
+import fr.whyt.core.Compound;
+import fr.whyt.core.data.DataParser;
+
 
 
 
@@ -58,9 +59,12 @@ public class Main {
 //		
 //		System.out.println(Integer.MAX_VALUE);
 		
-		CSV csv = CSVUtils.deserialize(Paths.get("resources/data.csv"));
-		System.out.println(csv);
+//		CSV csv = CSVUtils.deserialize(Paths.get("resources/data.csv"));
+//		System.out.println(csv);
+		
+		ArrayList<Compound> compounds = DataParser.deserialize();
+		System.out.println(compounds.stream().map(c -> c.toString()).reduce((s1, s2) -> s1 + '\n' + s2).get());
 		
 	}
-
+	
 }
