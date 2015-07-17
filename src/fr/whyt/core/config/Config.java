@@ -203,33 +203,7 @@ public class Config {
 
 	
 	public void save() {
-		ConfigRW.serialize(this);
+		ConfigParser.serialize(this);
 	}
-	
 
-	/** STATIC **/
-	public static Config init(Path file) {
-		return ConfigRW.deserialize(file);
-	}
-	
-	public static void save(Config config) {	
-		ConfigRW.serialize(config);
-	}
-	
-	public static Result build(Config config) {
-		// TODO build the config according to rules and get results.
-		// - Rules are defining how many compound (Architecture+Component) it needs to match the given config.
-		// e.g. assume width=5, depth=5, floors=1, floors_height=2 (with simple example)
-		// 		it needs at least 5x5=25 foundations, 5x5x2=50 walls, 5x5=25 ceiling/roof
-		//		in this case, there are no doors, no windows, no sas, no fences, etc...
-		// - Results are about
-		// 			- quantities needed (total and by component, architecture, floors, fences, etc...),
-		// 			- harvesting time (average, according to effectiveness and resources type),
-		//			- and so much others helpfully...
-		//
-		
-		
-		return null;
-	}
-	
 }

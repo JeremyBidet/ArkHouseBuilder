@@ -30,11 +30,11 @@ import fr.whyt.core.config.Config.Stairs;
  * @author Jeremy
  *
  */
-public class ConfigRW {
+public class ConfigParser {
 	
 	private static String config_regex = "((?<key>\\w+)=(?<value>\\w+))?\\p{Blank}*(?<comment>#.*)?";
 	
-	protected static Config deserialize(Path file) {		
+	public static Config deserialize(Path file) {		
 		try(BufferedReader br = Files.newBufferedReader(file)) {
 			Pattern p = Pattern.compile(config_regex);
 			Config config = new Config(file);
@@ -75,7 +75,7 @@ public class ConfigRW {
 		}
 	}
 	
-	protected static void serialize(Config config) {
+	public static void serialize(Config config) {
 		Path path = checkName(config.getFile());
 		try {
 			File file = path.toFile();

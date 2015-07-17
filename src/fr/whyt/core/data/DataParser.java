@@ -25,7 +25,7 @@ public class DataParser {
 	
 	public static final Path path = Paths.get("resources/data.csv");
 	
-	public static ArrayList<Compound> deserialize() {
+	public static Data deserialize() {
 		CSV csv = CSVParser.deserialize(path);
 		
 		ArrayList<Compound> compounds = new ArrayList<Compound>(csv.count());
@@ -53,10 +53,10 @@ public class DataParser {
 			compounds.add(new Compound(Architecture.get(architecture), Component.get(component), 0));
 		}
 		
-		return compounds;
+		return new Data(compounds);
 	}
 	
-	public static void serialize(ArrayList<Component> components) {
+	public static void serialize(Data data) {
 		// TODO
 		
 		CSV csv = new CSV(path, null, null);
