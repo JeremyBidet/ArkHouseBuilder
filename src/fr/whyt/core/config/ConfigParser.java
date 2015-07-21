@@ -18,12 +18,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
-import fr.whyt.core.Architecture;
 import fr.whyt.core.config.Config.ArchitectureModel;
 import fr.whyt.core.config.Config.Doors;
 import fr.whyt.core.config.Config.FloorHeight;
 import fr.whyt.core.config.Config.Position;
 import fr.whyt.core.config.Config.Stairs;
+import fr.whyt.core.data.Architecture;
 
 
 /**

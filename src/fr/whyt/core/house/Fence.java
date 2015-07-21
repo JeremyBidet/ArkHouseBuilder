@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.whyt.house;
+package fr.whyt.core.house;
 
 
 /**

@@ -8,10 +8,6 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import fr.whyt.core.Architecture;
-import fr.whyt.core.Component;
-import fr.whyt.core.Compound;
-import fr.whyt.core.Resource;
 import fr.whyt.utils.csv.CSV;
 import fr.whyt.utils.csv.CSVParser;
 import fr.whyt.utils.csv.Row;

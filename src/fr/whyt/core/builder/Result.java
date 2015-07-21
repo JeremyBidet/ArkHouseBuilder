@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.function.Function;
 
-import fr.whyt.core.Compound;
+import fr.whyt.core.data.Compound;
 
 
 /**

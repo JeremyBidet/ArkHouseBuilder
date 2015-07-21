@@ -1,9 +1,9 @@
 /**
  * 
  */
-package fr.whyt.house;
+package fr.whyt.core.house;
 
-import fr.whyt.core.Compound;
+import fr.whyt.core.data.Compound;
 
 
 /**

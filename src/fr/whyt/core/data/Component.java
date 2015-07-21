@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.whyt.core;
+package fr.whyt.core.data;
 
 import java.util.HashMap;
 import java.util.NoSuchElementException;

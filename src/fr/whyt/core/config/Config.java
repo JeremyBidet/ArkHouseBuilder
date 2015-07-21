@@ -6,7 +6,7 @@ package fr.whyt.core.config;
 import java.nio.file.Path;
 import java.util.HashMap;
 
-import fr.whyt.core.Architecture;
+import fr.whyt.core.data.Architecture;
 
 
 /**

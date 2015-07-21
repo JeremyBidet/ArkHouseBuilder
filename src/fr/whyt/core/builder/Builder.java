@@ -6,10 +6,10 @@ package fr.whyt.core.builder;
 import java.nio.file.Paths;
 import java.util.HashMap;
 
-import fr.whyt.core.Compound;
 import fr.whyt.core.config.Config;
 import fr.whyt.core.config.Config.ArchitectureModel;
 import fr.whyt.core.config.ConfigParser;
+import fr.whyt.core.data.Compound;
 import fr.whyt.core.data.Data;
 import fr.whyt.core.data.DataParser;
 

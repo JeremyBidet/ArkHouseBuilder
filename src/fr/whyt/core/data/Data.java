@@ -5,8 +5,6 @@ package fr.whyt.core.data;
 
 import java.util.ArrayList;
 
-import fr.whyt.core.Compound;
-
 
 /**
  * @author Jeremy
