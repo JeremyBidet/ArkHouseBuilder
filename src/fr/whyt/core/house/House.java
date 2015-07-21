@@ -16,9 +16,9 @@ public class House {
 	private final Floor ground_floor;
 	private final HashMap<Integer, Floor> floors;
 	private final HashMap<Integer, Fence> fences;
-	private final HashMap<Integer, SecuritySas> security_sas;
+	private final SecuritySas security_sas;
 	
-	public House(Floor ground_floor, Floor[] floors, Fence[] fences, SecuritySas[] security_sas) {
+	public House(Floor ground_floor, Floor[] floors, Fence[] fences, SecuritySas security_sas) {
 		this.ground_floor = ground_floor;
 		
 		this.floors = new HashMap<>();
@@ -31,10 +31,7 @@ public class House {
 			this.fences.put(i, fences[i]);
 		}
 		
-		this.security_sas = new HashMap<>();
-		for(int i=1; i<security_sas.length; ++i) {
-			this.security_sas.put(i, security_sas[i]);
-		}
+		this.security_sas = security_sas;
 	}
 
 	
@@ -66,17 +63,10 @@ public class House {
 		}
 	}
 	
-	public HashMap<Integer, SecuritySas> getSecuritySas() {
+	public SecuritySas getSecuritySas() {
 		return this.security_sas;
 	}
 	
-	public SecuritySas getSecuritySas(int security_sas) {
-		if( this.security_sas.containsKey(security_sas) ) {
-			return this.security_sas.get(security_sas);
-		} else {
-			return null;
-		}
-	}
 	
 	@Override
 	public boolean equals(Object obj) {
@@ -94,16 +84,13 @@ public class House {
 		sb.append("Ground floor : ").append(this.ground_floor).append('\n');
 		sb.append("Floors :\n");
 		for(Map.Entry<Integer, Floor> e : this.floors.entrySet()) {
-			sb.append("\tFloor ").append(e.getKey()).append(" : ").append(e.getValue()).append('\n');
+			sb.append("\tFloor ").append(e.getKey()).append(" :\n").append(e.getValue()).append('\n');
 		}
 		sb.append("Fences :\n");
 		for(Map.Entry<Integer, Fence> e : this.fences.entrySet()) {
-			sb.append("\tFence ").append(e.getKey()).append(" : ").append(e.getValue()).append('\n');
+			sb.append("\tFence ").append(e.getKey()).append(" :\n").append(e.getValue()).append('\n');
 		}
-		sb.append("Security sas :\n");
-		for(Map.Entry<Integer, SecuritySas> e : this.security_sas.entrySet()) {
-			sb.append("\tSecurity sas ").append(e.getKey()).append(" : ").append(e.getValue()).append('\n');
-		}
+		sb.append("Security sas : ").append(this.security_sas);
 		
 		return sb.toString();
 	}

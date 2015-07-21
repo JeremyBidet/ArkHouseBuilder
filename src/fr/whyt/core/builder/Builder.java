@@ -55,7 +55,7 @@ public class Builder {
 			security_sas=true												# true|false
 			security_sas_door=behemoth; 									# security_sas=true only : normal|dinausor|behemoth
 			windows_per_side={0=0, 1=2, 2=2, 3=3} 							# key=floor# ; value=window_quantity
-			windows_position={0=null, 1=centered, 2=bordered, 3=centered}	# key=floor# ; value=centered|bordered
+			windows_position={1=centered, 2=bordered, 3=centered}			# key=floor# ; value=centered|bordered
 			indoor_roof_access=true											# true|false
 			indoor_roof_access_stair=ladder									# roof_acces=true only : ladder|ramp
 			outdoor_roof_acces=true											# true|false, ladder only
