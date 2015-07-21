@@ -37,7 +37,7 @@ windows_per_side={0=0, 1=1, 2=2, 3=3} 							# key=floor# ; value=window_quantit
 windows_position={0=null, 1=centered, 2=bordered, 3=centered}	# key=floor# ; value=centered|bordered
 indoor_roof_access=true											# true|false
 indoor_roof_access_stair=ladder									# roof_acces=true only : ladder|ramp
-outdoor_roof_acces=true											# true|false, ladder only	
+outdoor_roof_acces=true											# true|false, ladder only
 	 * 
 	 */
 	

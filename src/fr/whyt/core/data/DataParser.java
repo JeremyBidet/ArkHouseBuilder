@@ -12,8 +12,8 @@ import fr.whyt.core.Architecture;
 import fr.whyt.core.Component;
 import fr.whyt.core.Compound;
 import fr.whyt.core.Resource;
-import fr.whyt.utils.CSVParser;
 import fr.whyt.utils.csv.CSV;
+import fr.whyt.utils.csv.CSVParser;
 import fr.whyt.utils.csv.Row;
 
 
@@ -50,7 +50,7 @@ public class DataParser {
 			Architecture.add(architecture, required);
 			Component.add(component, level, resources);
 			
-			compounds.add(new Compound(Architecture.get(architecture), Component.get(component), 0));
+			compounds.add(new Compound(Architecture.get(architecture), Component.get(component)));
 		}
 		
 		return new Data(compounds);

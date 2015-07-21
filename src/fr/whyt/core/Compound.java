@@ -12,12 +12,10 @@ public class Compound {
 	
 	private final Architecture architecture;
 	private final Component component;
-	private int quantity;
 	
-	public Compound(Architecture architecture, Component component, int quantity) {
+	public Compound(Architecture architecture, Component component) {
 		this.architecture = architecture;
 		this.component = component;
-		this.quantity = quantity;
 	}
 
 	public Architecture getArchitecture() {
@@ -28,27 +26,15 @@ public class Compound {
 		return this.component;
 	}
 	
-	public int getTotalResources(Resource filter) {
-		return this.component.getResources(filter) * this.quantity;
+	public int getResources(Resource filter) {
+		return this.component.getResources(filter);
 	}
 	
-	public int getTotalResources() {
+	public int getResources() {
 		return this.component.getResources().keySet().stream()
-				.map(r1 -> this.component.getResources(r1) * this.quantity)
+				.map(r1 -> this.component.getResources(r1))
 				.reduce((i, j) -> i+j)
 				.get();
-	}
-	
-	public int getQuantity() {
-		return this.quantity;
-	}
-	
-	public void setQuantity(int quantity) {
-		this.quantity = quantity;
-	}
-	
-	public void addQuantity(int quantity) {
-		this.quantity += quantity;
 	}
 	
 	
@@ -56,13 +42,12 @@ public class Compound {
 	public boolean equals(Object obj) {
 		return obj instanceof Compound
 				&& ((Compound) obj).architecture.equals(this.architecture)
-				&& ((Compound) obj).component.equals(this.component)
-				&& ((Compound) obj).quantity == this.quantity;
+				&& ((Compound) obj).component.equals(this.component);
 	}
 	
 	@Override
 	public String toString() {
-		return this.quantity + "x " + this.architecture + " " + this.component;
+		return this.architecture + " " + this.component;
 	}
 	
 }

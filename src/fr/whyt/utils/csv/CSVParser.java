@@ -1,7 +1,7 @@
 /**
  * 
  */
-package fr.whyt.utils;
+package fr.whyt.utils.csv;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -14,12 +14,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
-
-import fr.whyt.utils.csv.CSV;
-import fr.whyt.utils.csv.Data;
-import fr.whyt.utils.csv.Header;
-import fr.whyt.utils.csv.HeaderInfo;
-import fr.whyt.utils.csv.Row;
 
 
 /**
